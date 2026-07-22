@@ -43,15 +43,14 @@ class Contact extends Block
 			/*--- TAB #1 ---*/
 			->addTab('Dane', ['placement' => 'top'])
 			->addGroup('g_contact_1', ['label' => ''])
+			->addImage('image', [
+				'label' => 'Obraz',
+				'return_format' => 'array',
+				'preview_size' => 'thumbnail',
+			])
 			->addText('header', ['label' => 'Tytuł'])
-			->addText('phone', [
-				'label' => 'Numer telefonu',
-			])
-			->addText('mail', [
-				'label' => 'Adres e-mail',
-			])
-			->addTextarea('address', [
-				'label' => 'Adres',
+			->addTextarea('text', [
+				'label' => 'Opis',
 				'rows' => 3,
 				'new_lines' => 'br',
 			])
@@ -124,6 +123,7 @@ class Contact extends Block
 		$fields = [
 			'g_contact_1' => get_field('g_contact_1'),
 			'g_contact_2' => get_field('g_contact_2'),
+			'g_obottom'   => get_field('g_obottom', 'option'),
 
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),

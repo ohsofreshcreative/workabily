@@ -5,10 +5,10 @@ namespace App\Options;
 use Log1x\AcfComposer\Options;
 use StoutLogic\AcfBuilder\FieldsBuilder;
 
-class Octa extends Options
+class Obottom extends Options
 {
 	public $name = 'Wezwanie do działania';
-	public $slug = 'octa';
+	public $slug = 'obottom';
 	public $title = 'Wezwanie do działania';
 	public $position = 101;
 	public $capability = 'edit_posts';
@@ -16,10 +16,10 @@ class Octa extends Options
 
 	public function fields(): FieldsBuilder
 	{
-		$octa = new FieldsBuilder('octa');
+		$obottom = new FieldsBuilder('obottom');
 
-		$octa
-			->addGroup('g_octa', ['label' => ''])
+		$obottom
+			->addGroup('g_obottom', ['label' => ''])
 			->addImage('image', [
 				'label'         => 'Obraz tła',
 				'return_format' => 'array',
@@ -32,6 +32,8 @@ class Octa extends Options
 				'toolbar'      => 'basic',
 				'media_upload' => false,
 			])
+			->addText('phone', ['label' => 'Telefon'])
+			->addText('mail', ['label' => 'E-mail'])
 			->addLink('button1', [
 				'label'         => 'Przycisk #1 (jasny)',
 				'return_format' => 'array',
@@ -47,6 +49,6 @@ class Octa extends Options
 			])
 			->endGroup();
 
-		return $octa;
+		return $obottom;
 	}
 }

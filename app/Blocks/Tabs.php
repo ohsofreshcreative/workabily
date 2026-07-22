@@ -54,7 +54,7 @@ class Tabs extends Block
 			->addTab('Kafelki', ['placement' => 'top'])
 			->addRepeater('r_tabs', [
 				'label' => 'Kafelki',
-				'layout' => 'table', // 'row', 'block', albo 'table'
+				'layout' => 'row', // 'row', 'block', albo 'table'
 				'min' => 1,
 				'button_label' => 'Dodaj kafelek'
 			])
@@ -71,8 +71,15 @@ class Tabs extends Block
 			->addText('title', [
 				'label' => 'Nagłówek',
 			])
-			->addTextarea('text', [
-				'label' => 'Opis',
+			->addWysiwyg('text', [
+				'label' => 'Treść',
+				'tabs' => 'all',
+				'toolbar' => 'full',
+				'media_upload' => true,
+			])
+			->addLink('button', [
+				'label' => 'Przycisk',
+				'return_format' => 'array',
 			])
 			->endRepeater()
 

@@ -74,6 +74,12 @@ class Banner extends Block
 			->addText('section_class', [
 				'label' => 'Dodatkowe klasy CSS',
 			])
+			->addTrueFalse('bighero', [
+				'label' => 'Duża sekcja hero',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
 			->addTrueFalse('nolist', [
 				'label' => 'Brak punktatorów',
 				'ui' => 1,
@@ -131,6 +137,7 @@ class Banner extends Block
 			'section_id' => get_field('section_id'),
 			'section_class' => get_field('section_class'),
 
+			'bighero' => (bool) get_field('bighero'),
 			'flip' => (bool) get_field('flip'),
 			'wide' => (bool) get_field('wide'),
 			'nomt' => (bool) get_field('nomt'),

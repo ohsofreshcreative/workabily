@@ -38,7 +38,33 @@ class Cta extends Block
 			])
 			/*--- FIELDS ---*/
 			->addTab('Treść', ['placement' => 'top'])
-			->addMessage('Edycja', 'Tę zawartość edytujemy klikając w menu panelu administratora „Wezwanie do działania”.')
+			->addGroup('g_cta', ['label' => ''])
+			->addImage('image', [
+				'label'         => 'Obraz tła',
+				'return_format' => 'array',
+				'preview_size'  => 'medium',
+			])
+			->addText('header', ['label' => 'Nagłówek'])
+			->addWysiwyg('txt', [
+				'label'        => 'Treść',
+				'tabs'         => 'visual',
+				'toolbar'      => 'basic',
+				'media_upload' => false,
+			])
+			->addLink('button1', [
+				'label'         => 'Przycisk #1 (jasny)',
+				'return_format' => 'array',
+			])
+			->addLink('button2', [
+				'label'         => 'Przycisk #2 (biały)',
+				'return_format' => 'array',
+			])
+			->addText('title', ['label' => 'Tytuł'])
+			->addText('shortcode', [
+				'label'        => 'Kod formularza',
+				'instructions' => 'Wklej kod formularza:  [contact-form-7 id="f12c470" title="Contact form 1"]',
+			])
+			->endGroup()
 			->addTrueFalse('form', [
 				'label' => 'Pokaż formularz',
 				'ui' => 1,
@@ -107,7 +133,7 @@ class Cta extends Block
 	public function with(): array
 	{
 		$fields = [
-			'g_octa' => get_field('g_octa', 'option'),
+			'g_cta' => get_field('g_cta'),
 			'form' => (bool) get_field('form'),
 
 			'section_id' => get_field('section_id'),

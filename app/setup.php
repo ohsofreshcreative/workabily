@@ -110,6 +110,11 @@ add_action('after_setup_theme', function () {
 	 */
 	add_theme_support('post-thumbnails');
 
+	add_image_size('img-sm',  640,  0, false); // < md
+	add_image_size('img-md',  900,  0, false); // >= md
+	add_image_size('img-lg',  1200, 0, false); // >= lg
+	add_image_size('img-xl',  1440, 0, false); // >= xl
+
 	/**
 	 * Enable responsive embed support.
 	 *
@@ -139,6 +144,14 @@ add_action('after_setup_theme', function () {
 	 */
 	add_theme_support('customize-selective-refresh-widgets');
 }, 20);
+
+/*--- REMOVE GLOBAL STYLES ---*/
+
+add_action('wp_enqueue_scripts', function () {
+	wp_dequeue_style('wp-block-library');
+	wp_dequeue_style('wp-block-library-theme');
+	wp_dequeue_style('global-styles');
+}, 100);
 
 /*--- WOOCOMMERCE PHP FILES ---*/
 
@@ -172,7 +185,7 @@ add_action('widgets_init', function () {
 	$defaultConfig = [
 		'before_widget' => '<section class="footer_widget widget %1$s %2$s">',
 		'after_widget' => '</section>',
-		'before_title' => '<p class="font-header text-h5 widget-title primary mb-4 flex">',
+		'before_title' => '<p class="block font-header text-h5 widget-title primary !mb-4">',
 		'after_title' => '</p>',
 	];
 

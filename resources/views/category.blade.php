@@ -25,13 +25,15 @@ $sectionClass .= $flip ? ' order-flip' : '';
 $unique_id = 'clip_'.uniqid();
 @endphp
 
-<div class="hero category-header relative" @if(!empty($category_image['url'])) style="background-image: url('{{ $category_image['url'] }}'); background-position: center; background-size: cover;" @endif>
+<div class="hero category-header relative overflow-hidden">
+	<img class="absolute z-1 opacity-30 top-1/2 -translate-y-1/2 right-[5%]" src="{{ get_template_directory_uri() }}/resources/images/glow-shape.svg" />
 	<div class="absolute inset-0 bg-primary"></div>
-<div data-gsap-element="bread" class="__breadcrumb mb-4">
-			@if (function_exists('yoast_breadcrumb'))
-			{!! yoast_breadcrumb('<p id="breadcrumbs">','</p>') !!}
-			@endif
-		</div>
+
+	<div data-gsap-element="bread" class="__breadcrumb mb-4">
+		@if (function_exists('yoast_breadcrumb'))
+		{!! yoast_breadcrumb('<p id="breadcrumbs">','</p>') !!}
+		@endif
+	</div>
 	<div class="__wrapper c-main relative z-10 pt-60 pb-26">
 		<div class="__content w-full md:w-2/3">
 			<h2 class="text-white m-header">
@@ -43,96 +45,123 @@ $unique_id = 'clip_'.uniqid();
 			</div>
 			@endif
 		</div>
-		<div id="category-tabs" class="category-tabs z-20 relative rounded-full">
-			<!-- Swiper -->
-			
-		 <div id="category-tabs" class="category-tabs z-20 relative rounded-full">
-            <!-- Swiper -->
-            <div class="swiper category-swiper lg:flex lg:justify-center">
-                <div class="swiper-wrapper lg:w-fit">
-                    <!-- Slides -->
-                    <div class="swiper-slide !w-auto">
-                        <a href="/category/blog" class="__tab block bg-white rounded-full px-4 py-2 {{ is_category('blog') ? 'active' : '' }}">Blog</a>
-                    </div>
-                    @foreach($categories as $category)
-                    @if($category->name !== 'Blog')
-                    <div class="swiper-slide !w-auto">
-                        <a href="{{ get_category_link($category->term_id) }}" class="__tab block bg-white rounded-full px-4 py-2 {{ $term && $term->term_id === $category->term_id ? 'active' : 'bg-primary-400' }}">{{ $category->name }}</a>
-                    </div>
-                    @endif
-                    @endforeach
-                </div>
-            </div>
-            {{-- NOWY ELEMENT Z GRADIENTEM --}}
-            <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-r from-transparent to-primary pointer-events-none z-30"></div>
-        </div>
-    </div>
+		<div id="category-tabs" class="category-tabs z-20 relative mt-4">
+			<div class="flex flex-wrap gap-2 items-center">
+				<p class="text-white">Filtruj według kategorii:</p>
+				<div class="flex flex-wrap gap-2 items-center">
+					<a href="/category/baza-wiedzy" @class(['__tab flex-shrink-0 block rounded-full px-4 py-2', 'bg-white'=> is_category('baza-wiedzy'), 'bg-white/50' => !is_category('baza-wiedzy')])>Baza wiedzy</a>
+					@foreach($categories as $category)
+					@if($category->name !== 'Baza wiedzy')
+					@php $isActive = $term && $term->term_id === $category->term_id; @endphp
+					<a href="{{ get_category_link($category->term_id) }}" @class(['__tab flex-shrink-0 block rounded-full px-4 py-2', 'bg-white'=> $isActive, 'bg-white/50' => !$isActive])>{{ $category->name }}</a>
+					@endif
+					@endforeach
+				</div>
+			</div>
 		</div>
 	</div>
+</div>
+</div>
 
 </div>
 
 
 
-@if (have_posts())
-<div class="__posts c-main !mt-10 posts grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-	@while (have_posts()) @php(the_post())
+@php
+// Znajdź featured post: najnowszy przypięty w tej kategorii lub pierwszy z queried posts
+$featured_post = null;
+$sticky_ids = get_option('sticky_posts', []);
+$is_first_page = get_query_var('paged') <= 1;
 
-	@includeFirst(['partials.content-' . get_post_type(), 'partials.content'])
-	@endwhile
-</div>
+	if ($is_first_page && !empty($sticky_ids)) {
+	$sticky_args=[ 'post__in'=> $sticky_ids,
+	'posts_per_page' => 1,
+	'orderby' => 'date',
+	'order' => 'DESC',
+	'post_status' => 'publish',
+	];
+	if ($term && isset($term->term_id)) {
+	$sticky_args['cat'] = $term->term_id;
+	}
+	$sticky_q = new WP_Query($sticky_args);
+	if ($sticky_q->have_posts()) {
+	$featured_post = $sticky_q->posts[0];
+	}
+	}
 
-{{-- {!! get_the_posts_navigation() !!} --}}
-{!! the_posts_pagination() !!}
-@else
-<div class="mt-20 mb-20">
-	<div class="c-main">
-		<h3 class="">Brak wpisów w tej kategorii.</h3>
-		<a class="main-btn m-btn" href="/wszystkie-wpisy/">Sprawdź wszystkie wpisy</a>
-	</div>
-</div>
-@endif
+	if ($is_first_page && !$featured_post && !empty($wp_query->posts)) {
+	$featured_post = $wp_query->posts[0];
+	}
 
-<!-- bottom-block -->
+	$featured_id = $featured_post ? $featured_post->ID : null;
+	@endphp
 
-<section data-gsap-anim="section" @if(!empty($section_id)) id="{{ $section_id }}" @endif class="b-connect relative overflow-hidden -smt bg-primary-700 {{ $sectionClass }} {{ $section_class }}">
-	<div class="grid grid-cols-1 md:grid-cols-2 items-center">
-
-		<div class="__content relative z-10 w-11/12 md:w-3/4 lg:w-2/3 py-20 m-auto">
-			<div data-gsap-element="txt" class="text-secondary">
-				{!! $bottom['txt'] !!}
-			</div>
-			<h4 data-gsap-element="header" class="text-white mt-2">{{ $bottom['header'] }}</h4>
-
-			@if (!empty($bottom['button']))
-			<div class="inline-buttons m-btn">
-				<a data-gsap-element="button" class="second-btn left-btn"
-					href="{{ $bottom['button']['url'] }}"
-					target="{{ $bottom['button']['target'] }}">
-					{{ $bottom['button']['title'] }}
-				</a>
-				@if (!empty($bottom['button2']))
-				<a data-gsap-element="button" class="white-btn"
-					href="{{ $bottom['button2']['url'] }}"
-					target="{{ $bottom['button2']['target'] }}">
-					{{ $bottom['button2']['title'] }}
-				</a>
-				@endif
+	@if ($featured_post && $is_first_page)
+	<div class="c-main relative z-10 !-mt-14">
+		<a href="{{ get_permalink($featured_post->ID) }}" class="group flex flex-col md:flex-row items-center gap-6 md:gap-10 bg-white radius shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden relative p-6 md:p-10">
+			@if (has_post_thumbnail($featured_post->ID))
+			<div class="md:w-1/2">
+				<x-picture
+					:image="get_post_thumbnail_id($featured_post->ID)"
+					figure-class="h-full m-0"
+					class="w-full h-full object-cover radius-img" />
 			</div>
 			@endif
-
-		</div>
-
-		<div data-gsap-element="img" class="__img inset-y-0 h-full">
-
-			<img class="__bg absolute w-full lg:hidden top-0 left-0 pointer-events-none" src="/wp-content/uploads/2026/01/connect-bg-top.svg" />
-			<img class="__bg absolute max-lg:hidden top-1/2 -translate-y-1/2 left-0 pointer-events-none" src="/wp-content/uploads/2026/01/connect-bg.svg" />
-			<img src="{{ $bottom['image']['url'] }}" alt="{{ $bottom['image']['alt'] }}" class="w-full h-full object-cover object-center" />
-		</div>
-
-		<img class="__bg absolute left-1/2 -translate-x-1/2 -bottom-40 w-[400px] pointer-events-none" src="/wp-content/uploads/2026/01/leaf.svg" />
-
+			<div class="flex flex-col md:w-1/2">
+				@php
+				$_fcats = get_the_terms($featured_post->ID, 'category') ?: [];
+				$_fexcluded = ['baza-wiedzy', 'uncategorized'];
+				$_fcats_filtered = array_filter($_fcats, fn($_c) => !in_array($_c->slug, $_fexcluded));
+				@endphp
+				@if (!empty($_fcats_filtered))
+				<div class="flex gap-2 flex-wrap mb-3">
+					@foreach ($_fcats_filtered as $_c)
+					<p class="text-xs font-semibold text-primary bg-primary-lighter/20 rounded-full px-4 py-2">{{ $_c->name }}</p>
+					@endforeach
+				</div>
+				@endif
+				<h3 class="text-h6 md:text-h3 text-primary line-clamp-3 mb-4">{{ get_the_title($featured_post->ID) }}</h3>
+				<div class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-secondary group-hover:bg-secondary-hover transition-colors self-start">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#60102E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M7 17L17 7" />
+						<path d="M7 7h10v10" />
+					</svg>
+				</div>
+			</div>
+		</a>
 	</div>
-</section>
+	@endif
 
-@endsection
+	@if (have_posts())
+	<div class="__posts c-main !mt-10 posts grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+		@while (have_posts())
+		@php the_post(); @endphp
+		@if (get_the_ID() !== $featured_id)
+		@includeFirst(['partials.content-' . get_post_type(), 'partials.content'])
+		@endif
+		@endwhile
+	</div>
+
+	{{-- {!! get_the_posts_navigation() !!} --}}
+	{!! the_posts_pagination() !!}
+	@else
+	<div class="mt-20 mb-20">
+		<div class="c-main">
+			<h3 class="">Brak wpisów w tej kategorii.</h3>
+			<a class="main-btn m-btn" href="/wszystkie-wpisy/">Sprawdź wszystkie wpisy</a>
+		</div>
+	</div>
+	@endif
+
+	<!-- bottom-block -->
+	@php
+	$g_obottom = get_field('g_obottom', 'option');
+	$form = true;
+	$sectionClass = '';
+	$section_id = '';
+	$section_class = '';
+	$background = 'none';
+	@endphp
+	@include('blocks.bottom')
+
+	@endsection

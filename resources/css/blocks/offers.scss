@@ -1,0 +1,21 @@
+.b-offers {
+	.__col {
+		@media (min-width: 1024px) {
+			grid-template-columns: 1fr 2fr;
+		}
+	}
+
+	.__col:nth-child(even) {
+		@media (min-width: 1024px) {
+			grid-template-columns: 2fr 1fr;
+
+			figure {
+				order: 2;
+			}
+
+			.__content {
+				order: 1;
+			}
+		}
+	}
+}

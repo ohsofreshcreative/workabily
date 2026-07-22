@@ -12,9 +12,11 @@
 	<div class="__wrapper c-main relative">
 		<div class="__col grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-20">
 			@if (!empty($g_content['image']))
-			<div data-gsap-element="img" class="__img h-full order1">
-				<img class="" src="{{ $g_content['image']['url'] }}" alt="{{ $g_content['image']['alt'] ?? '' }}">
-			</div>
+			<x-picture
+				:image="$g_content['image']"
+				class="__img object-cover h-full radius-img h-full object-cover"
+				figure-class="order1 h-full"
+				data-gsap-element="img" />
 			@endif
 
 			<div class="__content order2">

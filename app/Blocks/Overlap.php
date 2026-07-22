@@ -65,6 +65,11 @@ class Overlap extends Block
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'thumbnail',
 			])
+			->addImage('icon', [
+				'label' => 'Ikona',
+				'return_format' => 'array', // lub 'url', lub 'id'
+				'preview_size' => 'thumbnail',
+			])
 			->addText('header', [
 				'label' => 'Nagłówek',
 			])

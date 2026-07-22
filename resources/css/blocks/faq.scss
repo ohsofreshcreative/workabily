@@ -7,14 +7,9 @@
 
 	.tabs-wrapper {}
 
-	.tabs-wrapper:last-child {
-		border-bottom: none;
-	}
-
 	.tabs {
 		width: 100%;
 		overflow: hidden;
-		margin-bottom: 16px !important;
 	}
 
 	.tabs-label {
@@ -23,8 +18,14 @@
 		cursor: pointer;
 		color: var(--body);
 
-		.__arrow {
-			transition: transform 0.3s ease-in-out;
+		.__toggle {
+			transition: background 0.3s ease-in-out;
+
+			&::before {
+				content: '+';
+				display: block;
+				line-height: 1;
+			}
 		}
 	}
 
@@ -65,8 +66,13 @@
 		border: 1px solid var(--primary);
 	}
 
-	input:checked+.tabs-label .__arrow {
-		transform: rotate(180deg);
+	input:checked+.tabs-label .__toggle {
+		color: white;
+
+		&::before {
+			content: '\2212';
+			color: white;
+		}
 	}
 
 	.tabs:has(input:checked) {

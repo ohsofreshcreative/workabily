@@ -27,6 +27,29 @@ add_action('pre_get_posts', function ($q) {
   }
 });
 
+/*--- TINYMCE CUSTOM FORMATS ---*/
+
+add_filter('tiny_mce_before_init', function ($settings) {
+    $custom_formats = [
+        ['title' => 'Duży tekst',    'inline' => 'span', 'classes' => 'fmt-large'],
+        ['title' => 'Mały tekst',    'inline' => 'span', 'classes' => 'fmt-small'],
+        ['title' => 'Wyróżnienie',   'inline' => 'span', 'classes' => 'fmt-accent'],
+    ];
+    $settings['style_formats'] = json_encode($custom_formats);
+
+    $editor_css = \Illuminate\Support\Facades\Vite::asset('resources/css/editor.css');
+    $settings['content_css'] = isset($settings['content_css'])
+        ? $settings['content_css'] . ',' . $editor_css
+        : $editor_css;
+
+    return $settings;
+});
+
+add_filter('mce_buttons_2', function ($buttons) {
+    array_unshift($buttons, 'styleselect');
+    return $buttons;
+});
+
 
 /*--- BREACRUMB SEPARATOR ---*/
 add_filter( 'woocommerce_breadcrumb_defaults', function ( $defaults ) {

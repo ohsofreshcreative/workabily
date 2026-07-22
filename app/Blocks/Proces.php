@@ -36,9 +36,11 @@ class Proces extends Block
 				'open' => false,
 				'multi_expand' => true,
 			])
+
 			/*--- FIELDS ---*/
 			->addTab('Treść', ['placement' => 'top'])
 			->addGroup('g_proces', ['label' => ''])
+			->addText('title', ['label' => 'Tytuł'])
 			->addText('header', ['label' => 'Nagłówek'])
 			->addWysiwyg('txt', [
 				'label' => 'Opis',
@@ -48,6 +50,7 @@ class Proces extends Block
 			])
 			->endGroup()
 
+			/*--- TAB ---*/
 			->addTab('Kafelki', ['placement' => 'top'])
 			->addRepeater('r_proces', [
 				'label' => 'proces',
@@ -74,6 +77,31 @@ class Proces extends Block
 				'media_upload' => true,
 			])
 			->endRepeater()
+
+			/*--- TAB ---*/
+			->addTab('CTA', ['placement' => 'top'])
+			->addGroup('g_proces2', ['label' => ''])
+			->addImage('image', [
+				'label' => 'Obraz',
+				'return_format' => 'array',
+				'preview_size' => 'thumbnail',
+			])
+			->addText('header', ['label' => 'Nagłówek'])
+			->addWysiwyg('text', [
+				'label' => 'Treść',
+				'tabs' => 'all',
+				'toolbar' => 'full',
+				'media_upload' => true,
+			])
+			->addLink('button1', [
+				'label' => 'Przycisk #1',
+				'return_format' => 'array',
+			])
+			->addLink('button2', [
+				'label' => 'Przycisk #2',
+				'return_format' => 'array',
+			])
+			->endGroup()
 
 			/*--- USTAWIENIA BLOKU ---*/
 			->addTab('Ustawienia bloku', ['placement' => 'top'])
@@ -131,6 +159,7 @@ class Proces extends Block
 	{
 		$fields = [
 			'g_proces' => get_field('g_proces'),
+			'g_proces2' => get_field('g_proces2'),
 			'r_proces' => get_field('r_proces'),
 
 			'section_id' => get_field('section_id'),

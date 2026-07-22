@@ -4,6 +4,7 @@ namespace App\Blocks;
 
 use Log1x\AcfComposer\Block;
 use StoutLogic\AcfBuilder\FieldsBuilder;
+use App\Support\SectionClasses;
 
 class Posts extends Block
 {
@@ -78,6 +79,12 @@ class Posts extends Block
 			->addText('section_class', [
 				'label' => 'Dodatkowe klasy CSS',
 			])
+			->addTrueFalse('nolist', [
+				'label' => 'Brak punktatorów',
+				'ui' => 1,
+				'ui_on_text' => 'Tak',
+				'ui_off_text' => 'Nie',
+			])
 			->addTrueFalse('flip', [
 				'label' => 'Odwrotna kolejność',
 				'ui' => 1,
@@ -102,29 +109,20 @@ class Posts extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-			->addTrueFalse('lightbg', [
-				'label' => 'Jasne tło',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('graybg', [
-				'label' => 'Szare tło',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('whitebg', [
-				'label' => 'Białe tło',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
-			->addTrueFalse('brandbg', [
-				'label' => 'Tło marki',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
+			->addSelect('background', [
+				'label' => 'Kolor tła',
+				'choices' => [
+					'none' => 'Brak (domyślne)',
+					'section-white' => 'Białe',
+					'section-light' => 'Jasne',
+					'section-gray' => 'Szare',
+					'section-brand' => 'Marki',
+					'section-gradient' => 'Gradient',
+					'section-dark' => 'Ciemne',
+				],
+				'default_value' => 'none',
+				'ui' => 0, // Ulepszony interfejs
+				'allow_null' => 0,
 			]);
 
 		return $posts;
@@ -136,7 +134,6 @@ class Posts extends Block
 		$show_image = $posts_settings['show_image'] ?? true;
 		$show_excerpt = $posts_settings['show_excerpt'] ?? false;
 
-		// Get posts from the selected category
 		$args = [
 			'post_type' => 'post',
 			'posts_per_page' => 6,
@@ -148,21 +145,32 @@ class Posts extends Block
 		$query = new \WP_Query($args);
 		$posts = $query->posts;
 
-		return [
-			'posts_settings' => get_field('posts_settings'),
-			'posts' => $posts,
-			'show_image' => $show_image,
-			'show_excerpt' => $show_excerpt,
-			'section_id' => get_field('section_id'),
+		$fields = [
+			'posts_settings' => $posts_settings,
+			'posts'          => $posts,
+			'show_image'     => $show_image,
+			'show_excerpt'   => $show_excerpt,
+
+			'section_id'    => get_field('section_id'),
 			'section_class' => get_field('section_class'),
-			'flip' => get_field('flip'),
-			'wide' => get_field('wide'),
-			'nomt' => get_field('nomt'),
-			'gap' => get_field('gap'),
-			'lightbg' => get_field('lightbg'),
-			'graybg' => get_field('graybg'),
-			'whitebg' => get_field('whitebg'),
-			'brandbg' => get_field('brandbg'),
+
+			'flip'   => (bool) get_field('flip'),
+			'wide'   => (bool) get_field('wide'),
+			'nomt'   => (bool) get_field('nomt'),
+			'gap'    => (bool) get_field('gap'),
+			'nolist' => (bool) get_field('nolist'),
+
+			'background' => get_field('background') ?: 'none',
 		];
+
+		$fields['sectionClass'] = SectionClasses::fromMap($fields, [
+			'flip'   => 'order-flip',
+			'wide'   => 'wide',
+			'nomt'   => '!mt-0',
+			'gap'    => 'wider-gap',
+			'nolist' => 'no-list',
+		]);
+
+		return $fields;
 	}
 }

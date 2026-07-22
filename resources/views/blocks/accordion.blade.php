@@ -10,31 +10,35 @@
 	])>
 
 	<div class="c-main">
-		<div class="__wrapper">
-			<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 my-10">
+		<div class="__wrapper grid gap-18">
+
+			<div class="grid grid-cols-1 md:grid-cols-2 section-gap items-center">
+				<h2 data-gsap-element="header" class="__header order-1">{{ $g_accordion['title'] }}</h2>
+				<div data-gsap-element="txt" class="m-header text-xl order-2">{!! $g_accordion['text'] !!}</div>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] items-center gap-24">
 				@if (!empty($g_accordion['image']))
-				<img data-gsap-element="img" class="__img object-cover order1 h-full radius-img" src="{{ $g_accordion['image']['url'] }}" alt="{{ $g_accordion['image']['alt'] ?? '' }}">
+				<x-picture
+					:image="$g_accordion['image']"
+					class="__img object-cover h-full radius-img"
+					figure-class="h-full order-3"
+					data-gsap-element="img" />
 				@endif
-				<div class="__content order2">
-					<h4 data-gsap-element="header" class="m-header">{{ $g_accordion['title'] }}</h4>
-					<div data-gsap-element="txt" class="">{!! $g_accordion['text'] !!}</div>
-					@if (!empty($g_accordion['button']))
-					<a class="main-btn m-btn" href="{{ $g_accordion['button']['url'] }}">{{ $g_accordion['button']['title'] }}</a>
-					@endif
-					<div data-gsap-element="accordion" class="accordion-wrapper grid mt-10">
-						@foreach ($r_accordion as $item)
-						<div class="accordion rounded-2xl bg-white border border-secondary h-max">
-							<input class="acc-check" type="radio" name="accordion-radio" id="check{{ $loop->index }}" {{ $loop->first ? 'checked' : '' }}>
-							<label class="accordion-label flex items-center justify-between font-semibold text-md md:text-h5 gap-4" for="check{{ $loop->index }}">
-								{{ $item['title'] }}
-								<x-icon.arrow-up class="__arrow text-secondary w-3 h-4" />
-							</label>
-							<div class="accordion-content">
-								{!! $item['text'] !!}
-							</div>
+
+				<div data-gsap-element="accordion" class="accordion-wrapper grid order-4">
+					@foreach ($r_accordion as $item)
+					<div class="accordion rounded-2xl bg-white border border-secondary h-max mb-4 last:mb-0">
+						<input class="acc-check" type="radio" name="accordion-radio" id="check{{ $loop->index }}" {{ $loop->first ? 'checked' : '' }}>
+						<label class="accordion-label flex items-center justify-between font-semibold text-md md:text-h5 gap-4" for="check{{ $loop->index }}">
+							{{ $item['title'] }}
+							<span class="__toggle flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-secondary font-bold text-2xl"></span>
+						</label>
+						<div class="accordion-content">
+							{!! $item['text'] !!}
 						</div>
-						@endforeach
 					</div>
+					@endforeach
 				</div>
 			</div>
 		</div>
