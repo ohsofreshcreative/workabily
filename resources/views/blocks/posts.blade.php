@@ -1,4 +1,4 @@
-<!--- content -->
+<!--- posts -->
 
 <section
 	data-gsap-anim="section"

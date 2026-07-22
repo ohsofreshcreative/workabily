@@ -104,12 +104,6 @@ class Offer extends Block
 				'ui_on_text' => 'Tak',
 				'ui_off_text' => 'Nie',
 			])
-			->addTrueFalse('nmt', [
-				'label' => 'Ujemy margines górny',
-				'ui' => 1,
-				'ui_on_text' => 'Tak',
-				'ui_off_text' => 'Nie',
-			])
 			->addTrueFalse('gap', [
 				'label' => 'Większy odstęp',
 				'ui' => 1,
@@ -147,7 +141,6 @@ class Offer extends Block
 			'flip' => (bool) get_field('flip'),
 			'wide' => (bool) get_field('wide'),
 			'nomt' => (bool) get_field('nomt'),
-			'nmt' => (bool) get_field('nmt'),
 			'gap' => (bool) get_field('gap'),
 
 			'background' => get_field('background') ?: 'none',
@@ -157,7 +150,6 @@ class Offer extends Block
 			'flip' => 'order-flip',
 			'wide' => 'wide',
 			'nomt' => '!mt-0',
-			'nmt' => '!-mt-50',
 			'gap' => 'wider-gap',
 		]);
 

@@ -135,11 +135,12 @@ class Posts extends Block
 		$show_excerpt = $posts_settings['show_excerpt'] ?? false;
 
 		$args = [
-			'post_type' => 'post',
-			'posts_per_page' => 6,
-			'post_status' => 'publish',
-			'orderby' => 'date',
-			'order' => 'DESC',
+			'post_type'           => 'post',
+			'posts_per_page'      => 2,
+			'post_status'         => 'publish',
+			'orderby'             => 'date',
+			'order'               => 'DESC',
+			'ignore_sticky_posts' => 1,
 		];
 
 		$query = new \WP_Query($args);

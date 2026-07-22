@@ -38,7 +38,7 @@ use App\Walkers\MobileDropdownWalker;
 	<div class="flex items-center justify-between p-4 mobile-menu fixed-top md:hidden">
 		<a class="brand shrink-0" href="{{ home_url('/') }}">
 			@if ($logo)
-			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto h-12">
+			<img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto h-12 max-w-1/2">
 			@else
 			<span class="text-lg font-bold">{{ $siteName }}</span>
 			@endif
@@ -74,7 +74,7 @@ use App\Walkers\MobileDropdownWalker;
 		aria-label="Menu mobilne">
 		<div class="p-4 relative z-10">
 			<div class="flex items-center justify-between mb-6">
-				<span class=""><a class="brand shrink-0" href="{{ home_url('/') }}"><img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto h-12"></a></span>
+				<span class=""><a class="brand shrink-0" href="{{ home_url('/') }}"><img src="{{ $logo['url'] }}" alt="{{ $logo['alt'] ?? 'Logo' }}" class="w-auto h-12 max-w-1/2"></a></span>
 				<button
 					@click="mobileOpen = false"
 					class="p-2 text-white rounded-md">
@@ -89,7 +89,7 @@ use App\Walkers\MobileDropdownWalker;
 			<nav class="flex flex-col space-y-1 mt-20">
 				{!! wp_nav_menu([
 				'theme_location' => 'primary_navigation',
-				'menu_class' => 'nav-mobile flex flex-col space-y-2',
+				'menu_class' => 'nav-mobile flex flex-col space-y-2 gap-4',
 				'container' => false,
 				'echo' => false,
 				'walker' => new MobileDropdownWalker(),

@@ -15,7 +15,7 @@
     "src": "editor.deps.json"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DIHlG00L.css",
+    "file": "assets/app-RakRVhzE.css",
     "name": "app",
     "names": [
       "app.css"
@@ -24,7 +24,7 @@
     "isEntry": true,
     "assets": [
       "assets/header-shape-S_FUOSWJ.svg",
-      "assets/bottom-arrow-BE5KB43S.svg",
+      "assets/bottom-arrow-Djs4Z3q9.svg",
       "assets/check-DZIHIvL_.svg",
       "assets/pointer-C3ifhTTD.svg",
       "assets/video-mask-DBoibh_M.svg",
@@ -33,7 +33,7 @@
     ]
   },
   "resources/css/editor.css": {
-    "file": "assets/editor-R1cpDKqo.css",
+    "file": "assets/editor-fszB1tdl.css",
     "name": "editor",
     "names": [
       "editor.css"
@@ -42,7 +42,7 @@
     "isEntry": true
   },
   "resources/images/bottom-arrow.svg": {
-    "file": "assets/bottom-arrow-BE5KB43S.svg",
+    "file": "assets/bottom-arrow-Djs4Z3q9.svg",
     "src": "resources/images/bottom-arrow.svg"
   },
   "resources/images/check.svg": {

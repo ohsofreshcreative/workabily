@@ -828,18 +828,6 @@ h6,
 	z-index: 99999;
 }
 
-#mobile-menu-panel {
-	li a {
-		color: var(--color-primary);
-		font-size: 20px;
-		font-weight: 300;
-	}
-
-	li a:hover {
-		color: var(--color-primary-200);
-	}
-}
-
 /*--- DROPDOWN ---*/
 
 /*--- !BREADCRUMB ---*/
@@ -1305,15 +1293,17 @@ footer {
 		/* Ustaw odpowiednią wartość */
 	}
 
+	.widget-title {
+		display: flex;
+		align-items: center;
+	}
+
 	.widget-title::after {
 		content: url('/resources/images/bottom-arrow.svg');
 		position: absolute;
-		/*top: 50%;*/
 		right: 10px;
-		/* transform: translateY(-50%);*/
 		transition: transform 0.3s;
 		display: block !important;
-		width: 12px;
 	}
 
 	.footer_widget.open .widget-title::after {

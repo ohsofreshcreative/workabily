@@ -72,7 +72,7 @@
 			</div>
 
 			@if ($form)
-			<div data-gsap-element="form" class="bg-white radius p-10 -mt-20 md:-mt-0 mb-30 md:mb-0">
+			<div data-gsap-element="form" class="bg-white radius p-10 mb-30 md:mb-0">
 				<h4 class="!text-primary mb-4">{!! $g_obottom['title'] !!}</h4>
 				{!! do_shortcode($g_obottom['shortcode']) !!}
 			</div>

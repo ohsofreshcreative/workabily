@@ -51,7 +51,7 @@ class MobileDropdownWalker extends Walker_Nav_Menu
         // Case 2: Zwykły element menu, bez dzieci.
         else {
             $output .= '<li>';
-            $output .= '<a href="' . esc_attr($item->url) . '" class="block py-1">';
+            $output .= '<a href="' . esc_attr($item->url) . '" class="block py-1 text-white hover:text-white/50 text-2xl border-b border-dashed border-primary-400 pb-6">';
             $output .= esc_html($item->title);
             $output .= '</a>';
         }
