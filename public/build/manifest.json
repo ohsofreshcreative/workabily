@@ -15,7 +15,7 @@
     "src": "editor.deps.json"
   },
   "resources/css/app.css": {
-    "file": "assets/app-RakRVhzE.css",
+    "file": "assets/app-ClATo9aS.css",
     "name": "app",
     "names": [
       "app.css"
@@ -33,13 +33,22 @@
     ]
   },
   "resources/css/editor.css": {
-    "file": "assets/editor-fszB1tdl.css",
+    "file": "assets/editor-BEVRU7g-.css",
     "name": "editor",
     "names": [
       "editor.css"
     ],
     "src": "resources/css/editor.css",
-    "isEntry": true
+    "isEntry": true,
+    "assets": [
+      "assets/header-shape-S_FUOSWJ.svg",
+      "assets/bottom-arrow-Djs4Z3q9.svg",
+      "assets/check-DZIHIvL_.svg",
+      "assets/pointer-C3ifhTTD.svg",
+      "assets/video-mask-DBoibh_M.svg",
+      "assets/phone-mu5LiDij.svg",
+      "assets/mail-BlGygy5O.svg"
+    ]
   },
   "resources/images/bottom-arrow.svg": {
     "file": "assets/bottom-arrow-Djs4Z3q9.svg",

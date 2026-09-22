@@ -74,7 +74,7 @@ $grouped_tabs[$tabName][] = $item;
 							<div class="m-header">{!! $item['text'] !!}</div>
 							@endif
 							<x-button
-								href="$item['button']['url']"
+								:href="$item['button']['url']"
 								variant="primary"
 								class="relative z-10 m-btn after:absolute after:inset-0 after:content-['']">
 								{{ $item['button']['title'] }}

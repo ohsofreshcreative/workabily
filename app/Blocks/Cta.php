@@ -27,15 +27,6 @@ class Cta extends Block
 
 		$cta
 			->setLocation('block', '==', 'acf/cta') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Wezwanie do działania',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- FIELDS ---*/
 			->addTab('Treść', ['placement' => 'top'])
 			->addGroup('g_cta', ['label' => ''])

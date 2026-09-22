@@ -27,15 +27,6 @@ class Team extends Block
 
 		$team
 			->setLocation('block', '==', 'acf/team') // ważne!
-			->addText('block-title', [
-				'label' => 'Tytuł',
-				'required' => 0,
-			])
-			->addAccordion('accordion1', [
-				'label' => 'Nasz zespół',
-				'open' => false,
-				'multi_expand' => true,
-			])
 			/*--- TAB #1 ---*/
 			->addTab('Treści', ['placement' => 'top'])
 			->addGroup('g_team', ['label' => ''])

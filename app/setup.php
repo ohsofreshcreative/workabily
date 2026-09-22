@@ -24,6 +24,22 @@ add_filter('block_editor_settings_all', function ($settings) {
 	return $settings;
 });
 
+/*--- ACF BLOCK EXPANDED EDITOR ---*/
+
+add_filter('acf/register_block_type_args', function ($block) {
+	if (! str_starts_with($block['name'] ?? '', 'acf/')) {
+		return $block;
+	}
+
+	$block['acf_block_version'] = 3;
+	$block['api_version'] = 3;
+	$block['expanded_editor_buttons'] = true;
+	$block['hide_fields_in_sidebar'] = true;
+	$block['auto_inline_editing'] = false;
+
+	return $block;
+});
+
 /**
  * Inject scripts into the block editor.
  *
@@ -466,14 +482,14 @@ add_action('template_redirect', function () {
 
 
 add_filter('the_posts_pagination_args', function ($args) {
-    $args['prev_text'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>';
-    $args['next_text'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
-    $args['screen_reader_text'] = __('Nawigacja po wpisach', 'sage');
-    return $args;
+	$args['prev_text'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>';
+	$args['next_text'] = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+	$args['screen_reader_text'] = __('Nawigacja po wpisach', 'sage');
+	return $args;
 });
 
 add_filter('navigation_markup_template', function ($template, $class) {
-    return '
+	return '
     <nav class="navigation %1$s mt-10 mb-10" aria-label="%4$s">
         <h2 class="screen-reader-text">%2$s</h2>
         <div class="nav-links flex items-center justify-center gap-4">%3$s</div>
@@ -481,10 +497,9 @@ add_filter('navigation_markup_template', function ($template, $class) {
 }, 10, 2);
 
 add_filter('paginate_links_output', function ($output) {
-    $output = str_replace('page-numbers', 'page-numbers inline-flex items-center justify-center w-10 h-10 rounded-full', $output);
-    $output = str_replace('current', 'current bg-primary text-white', $output);
-    $output = str_replace('prev', 'prev', $output);
-    $output = str_replace('next', 'next', $output);
-    return $output;
+	$output = str_replace('page-numbers', 'page-numbers inline-flex items-center justify-center w-10 h-10 rounded-full', $output);
+	$output = str_replace('current', 'current bg-primary text-white', $output);
+	$output = str_replace('prev', 'prev', $output);
+	$output = str_replace('next', 'next', $output);
+	return $output;
 });
-
