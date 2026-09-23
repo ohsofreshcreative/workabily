@@ -5,6 +5,8 @@
 		video {
 			width: 100%;
 			height: auto;
+			aspect-ratio: 265 / 280;
+			object-fit: cover;
 			display: block;
 			mask-image: url('@images/video-mask.svg');
 			mask-size: contain;
