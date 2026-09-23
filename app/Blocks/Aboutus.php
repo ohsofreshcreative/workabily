@@ -32,6 +32,7 @@ public $supports = [
 			/*--- GROUP ---*/
 			->addTab('Elementy', ['placement' => 'top'])
 			->addGroup('g_aboutus', ['label' => ''])
+			->addText('title', ['label' => 'Tytuł'])
 			->addText('header', ['label' => 'Nagłówek'])
 			->addWysiwyg('text', [
 				'label' => 'Treść',
@@ -61,6 +62,9 @@ public $supports = [
 				'label' => 'Obraz',
 				'return_format' => 'array', // lub 'url', lub 'id'
 				'preview_size' => 'thumbnail',
+			])
+			->addText('title', [
+				'label' => 'Imię i nazwisko',
 			])
 			->endRepeater()
 
