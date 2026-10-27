@@ -21,15 +21,14 @@
 			li {
 				position: relative;
 				margin-bottom: 0.5em;
-				display: flex;
-				gap: 8px;
-				align-items: center;
+				padding-left: 22px;
 
 				&::before {
 					content: url('@images/pointer.svg');
-					position: relative;
+					position: absolute;
 					left: 0;
-					top: -6px;
+					top: 4px;
+					transform: translateY(-50%);
 					width: 14px;
 					height: 14px;
 					background-size: contain;

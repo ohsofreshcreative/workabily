@@ -30,7 +30,11 @@
 			<div class="grid gap-6">
 				@foreach ($r_checks ?? [] as $item)
 				<div data-gsap-element="card" class="__card relative flex items-start gap-8">
+					@if ($squares)
+					<span aria-hidden="true" class="w-3 h-3 mt-3 shrink-0 bg-primary"></span>
+					@else
 					<img class="w-6 mt-2" src="{{ get_template_directory_uri() }}/resources/images/check.svg" />
+					@endif
 					<div>
 						@if (!empty($item['title']))
 						<p class="text-h6">{{ $item['title'] }}</p>

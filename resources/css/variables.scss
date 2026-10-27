@@ -918,7 +918,7 @@ input[type='tel']:focus,
 input[type='email']:focus,
 textarea:focus {
 	width: 100%;
-	border: 1px solid var(--border-s);
+	border: 2px solid var(--color-secondary);
 	outline: none;
 	transition: all 0.2s ease-out;
 }

@@ -1564,11 +1564,6 @@
           "color": "var(--action)"
         },
         {
-          "name": "Background (Brand)",
-          "slug": "background-brand",
-          "color": "var(--bg-brand)"
-        },
-        {
           "name": "Primary (Light)",
           "slug": "primary-light",
           "color": "var(--color-primary-400)"

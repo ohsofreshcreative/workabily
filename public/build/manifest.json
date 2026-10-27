@@ -15,7 +15,7 @@
     "src": "editor.deps.json"
   },
   "resources/css/app.css": {
-    "file": "assets/app-vmPGqyFX.css",
+    "file": "assets/app-CL2AHAjH.css",
     "name": "app",
     "names": [
       "app.css"
@@ -26,14 +26,14 @@
       "assets/header-shape-S_FUOSWJ.svg",
       "assets/bottom-arrow-Djs4Z3q9.svg",
       "assets/check-DZIHIvL_.svg",
-      "assets/pointer-C3ifhTTD.svg",
+      "assets/pointer-DMShKyKX.svg",
       "assets/video-mask-DBoibh_M.svg",
       "assets/phone-mu5LiDij.svg",
       "assets/mail-BlGygy5O.svg"
     ]
   },
   "resources/css/editor.css": {
-    "file": "assets/editor-CvBOMR1Z.css",
+    "file": "assets/editor-CSKvLsex.css",
     "name": "editor",
     "names": [
       "editor.css"
@@ -44,7 +44,7 @@
       "assets/header-shape-S_FUOSWJ.svg",
       "assets/bottom-arrow-Djs4Z3q9.svg",
       "assets/check-DZIHIvL_.svg",
-      "assets/pointer-C3ifhTTD.svg",
+      "assets/pointer-DMShKyKX.svg",
       "assets/video-mask-DBoibh_M.svg",
       "assets/phone-mu5LiDij.svg",
       "assets/mail-BlGygy5O.svg"
@@ -71,7 +71,7 @@
     "src": "resources/images/phone.svg"
   },
   "resources/images/pointer.svg": {
-    "file": "assets/pointer-C3ifhTTD.svg",
+    "file": "assets/pointer-DMShKyKX.svg",
     "src": "resources/images/pointer.svg"
   },
   "resources/images/video-mask.svg": {

@@ -20,16 +20,16 @@
 }
 
 .editor-styles-wrapper ul.wp-block-list li {
-    display: flex; /* Ustawiamy li jako kontener flex */
-    align-items: flex-start; /* Wyrównujemy elementy do góry */
+    position: relative;
+    padding-left: 1.25em;
     margin-bottom: 0.5em;
 }
 
 .editor-styles-wrapper ul.wp-block-list li::before {
     content: "•";
-    margin-right: 0.75em; /* Odstęp między punktorem a tekstem */
+    position: absolute;
+    left: 0;
     font-weight: bold;
-    display: inline; /* Upewniamy się, że jest to element liniowy */
 }
 
 .acf-editor-wrap iframe {
@@ -258,4 +258,3 @@
 .editor-styles-wrapper {
 	background-color: #fff !important;
 }
-
