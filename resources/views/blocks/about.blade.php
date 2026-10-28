@@ -17,8 +17,8 @@
 			@if (!empty($g_about['image']))
 			<x-picture
 				:image="$g_about['image']"
-				class="__img object-contain h-full radius-img h-full"
-				figure-class="order1 h-full"
+				class="__img object-contain h-full radius-img"
+				figure-class="order1 h-full radius-img"
 				data-gsap-element="img" />
 			@endif
 
