@@ -13,7 +13,7 @@
 
 	<div class="__wrapper c-main relative z-10">
 	
-		<div class="__col grid grid-cols-1 lg:grid-cols-[1fr_2fr] items-center gap-8 lg:gap-20">
+		<div class="__col grid grid-cols-1 lg:grid-cols-[1.5fr_2fr] items-center gap-8 lg:gap-20">
 			@if (!empty($g_about['image']))
 			<x-picture
 				:image="$g_about['image']"
