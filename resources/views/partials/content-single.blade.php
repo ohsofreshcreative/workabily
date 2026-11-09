@@ -74,7 +74,7 @@ preg_match_all('/<h([1-4])[^>]*>(.*?)<\/h[1-4]>/', $content, $matches, PREG_SET_
 					@endif
 
 					<div class="__toc order-2 md:col-start-2 md:row-start-1 md:row-span-2 relative md:sticky top-0 md:top-30 h-max mb-8 md:mb-0">
-						<p class="text-h5 m-title">Spis treści</p>
+						<!-- <p class="text-h5 m-title">Spis treści</p> -->
 						@if(count($matches))
 						{!! $toc !!}
 						@endif
