@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-team')
+@else
+
 <!--- team --->
 
 <section
@@ -49,3 +53,4 @@
 	</div>
 
 </section>
+@endif

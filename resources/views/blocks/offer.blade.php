@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-offer')
+@else
+
 <!--- offer --->
 
 <section
@@ -44,3 +48,4 @@
 	</div>
 
 </section>
+@endif

@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-banner')
+@else
+
 @php
 $sectionClass = '';
 $sectionClass .= $nomt ? ' !mt-0' : '';
@@ -62,3 +66,4 @@ $sectionClass .= $nomt ? ' !mt-0' : '';
 		</div>
 
 </section>
+@endif

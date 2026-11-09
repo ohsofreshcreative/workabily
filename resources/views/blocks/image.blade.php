@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-image')
+@else
+
 @php
 
 $hasImage1 = !empty($g_image['image']);
@@ -30,3 +34,4 @@ $imageClass = ($hasImage1 && $hasImage2) ? 'img-l' : 'img-xl';
 	</div>
 
 </section>
+@endif

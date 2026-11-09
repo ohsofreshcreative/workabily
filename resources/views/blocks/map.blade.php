@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-map')
+@else
+
 <!--- map -->
 
 <section
@@ -31,3 +35,4 @@
 	</div>
 
 </section>
+@endif

@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-checks')
+@else
+
 <!--- checks -->
 
 <section
@@ -50,3 +54,4 @@
 		</div>
 
 </section>
+@endif

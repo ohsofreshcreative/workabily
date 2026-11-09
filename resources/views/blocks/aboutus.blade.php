@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-aboutus')
+@else
+
 <!--- aboutus -->
 
 <section
@@ -43,3 +47,4 @@
 	@endif
 
 </section>
+@endif

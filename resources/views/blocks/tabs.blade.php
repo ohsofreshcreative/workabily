@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-tabs')
+@else
+
 @php
 // --- Budowanie klas sekcji ---
 $sectionClass = '';
@@ -97,3 +101,5 @@ $grouped_tabs[$tabName][] = $item;
 		@endif
 	</div>
 </section>
+
+@endif

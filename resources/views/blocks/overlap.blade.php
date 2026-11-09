@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-overlap')
+@else
+
 <!--- overlap --->
 
 <section
@@ -48,3 +52,4 @@
 		</div>
 	</div>
 </section>
+@endif

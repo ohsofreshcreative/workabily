@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-slider')
+@else
+
 @php
 $sectionClass = '';
 $sectionClass .= $flip ? ' order-flip' : '';
@@ -45,3 +49,4 @@ $sectionClass .= ' ' . $background;
     </div>
 	<img class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 opacity-10 h-[110%] hue-rotate-220" src="/wp-content/uploads/2026/02/logo-bg.svg" />
 </section>
+@endif

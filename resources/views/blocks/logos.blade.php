@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-logos')
+@else
+
 <!--- logos --->
 
 <section
@@ -31,3 +35,4 @@
 	</div>
 	@endif
 </section>
+@endif

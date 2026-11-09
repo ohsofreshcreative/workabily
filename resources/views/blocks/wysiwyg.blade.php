@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-wysiwyg')
+@else
+
 <!--- wysiwyg -->
 
 <section
@@ -30,3 +34,4 @@
 	</div>
 
 </section>
+@endif

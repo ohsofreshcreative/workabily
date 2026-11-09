@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-proces')
+@else
+
 <!--- proces --->
 
 <section
@@ -20,7 +24,7 @@
 					@if (!empty($g_proces['header']))
 					<h3 data-gsap-element="header" class="__header-top text-white mt-14">{{ strip_tags($g_proces['header']) }}</h3>
 					@endif
-					<div data-gsap-element="txt" class="m-header text-white">{{ strip_tags($g_proces['txt']) }}</div>
+					<div data-gsap-element="txt" class="m-header text-white">{!! strip_tags($g_proces['txt']) !!}</div>
 				</div>
 			</div>
 			@if (!empty($r_proces))
@@ -89,3 +93,4 @@
 	</div>
 
 </section>
+@endif

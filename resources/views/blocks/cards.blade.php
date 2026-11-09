@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-cards')
+@else
+
 <!--- cards --->
 
 <section
@@ -45,3 +49,4 @@
 	</div>
 
 </section>
+@endif

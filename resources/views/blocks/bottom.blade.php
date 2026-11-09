@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-bottom')
+@else
+
 <!--- bottom -->
 
 <section
@@ -82,3 +86,4 @@
 	</div>
 
 </section>
+@endif

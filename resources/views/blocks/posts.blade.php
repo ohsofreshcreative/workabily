@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-posts')
+@else
+
 <!--- posts -->
 
 <section
@@ -76,3 +80,4 @@
 
 	</div>
 </section>
+@endif

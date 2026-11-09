@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-hero')
+@else
+
 <!-- hero --->
 
 <section
@@ -59,3 +63,4 @@
 	</div>
 
 </section>
+@endif

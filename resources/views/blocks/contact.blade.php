@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-contact')
+@else
+
 <!--- contact --->
 
 <section
@@ -62,3 +66,4 @@
 	</div>
 
 </section>
+@endif

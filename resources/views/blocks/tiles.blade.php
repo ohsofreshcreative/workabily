@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-tiles')
+@else
+
 <!--- tiles --->
 
 <section
@@ -72,3 +76,4 @@
 	</div>
 
 </section>
+@endif

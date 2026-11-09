@@ -1,3 +1,7 @@
+@if (!empty($block->preview))
+@include('blocks.previews.preview-numbers')
+@else
+
 @php
 $itemCount = count($r_numbers ?? []);
 $gridClass = 'grid-cols-1'; // Default for mobile
@@ -39,3 +43,4 @@ $gridClass .= ' md:grid-cols-' . min($itemCount, 5); // Handles 2, 3, 4, 5 items
 	</div>
 
 </section>
+@endif
